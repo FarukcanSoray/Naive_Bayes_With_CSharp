@@ -33,7 +33,7 @@ namespace Functions
             return Tuple.Create(documents, testDatas);
         }
 
-        public static double two_pass_variance(List<int> sayilar)
+        public static Tuple<double, double> two_pass_variance(List<int> sayilar)
         {
             int n = 0, sum1 = 0;
             double sum2 = 0.0;
@@ -45,21 +45,38 @@ namespace Functions
             }
 
             double mean = (double)sum1 / n;
-            Console.WriteLine(mean);
             foreach (int i in sayilar)
                 sum2 += (i - mean) * (i - mean);
 
             double variance = sum2 / (n - 1);
 
-            return variance;
+            return Tuple.Create(mean, variance);
         }
 
         public static void training(List<Document> trainingData, HashSet<string> classifierGrams)
         {
-            foreach (Document data in trainingData)
+            Dictionary<Tuple<string, string>, Tuple<double, double>> classifierXClass_MeanAndVariances = new Dictionary<Tuple<string, string>, Tuple<double, double>>();//<classifiergram,class><mean, variance>
+            foreach (string gram in classifierGrams)
             {
+                Dictionary<Tuple<string, string>, List<int>> gramCountInClass = new Dictionary<Tuple<string, string>, List<int>>();//tuple<gram, class>
+                foreach(Document data in trainingData)
+                {
+                    if (!gramCountInClass.ContainsKey(new Tuple<string,string>(gram, data.className)))
+                        gramCountInClass.Add(new Tuple<string, string>(gram, data.className), new List<int>());
+
+                    if(data.gramsFrequencies.ContainsKey(gram))
+                        gramCountInClass[new Tuple<string, string>(gram, data.className)].Add(data.gramsFrequencies[gram]);
+                    else
+                        gramCountInClass[new Tuple<string, string>(gram, data.className)].Add(0);
+                }
+                foreach(KeyValuePair< Tuple<string, string>, List<int> > i in gramCountInClass)
+                {
+                    classifierXClass_MeanAndVariances.Add(i.Key, two_pass_variance(i.Value));
+                   // Console.WriteLine(two_pass_variance(i.Value));
+                }
 
             }
+            
         }
 
     }

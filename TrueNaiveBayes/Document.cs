@@ -14,6 +14,7 @@ namespace TrueNaiveBayes
 
         public string documentName { get { return _documentName; } }
         public string className { get { return _class; } }
+
         public Dictionary<string, int> gramsFrequencies { get { return _gramsFrequencies; } }
 
         public Document(string name, string className, Dictionary<string, int> gramFreq)

@@ -4,23 +4,18 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
 using Nuve;
 using Nuve.Lang;
-using Nuve.Morphologic.Structure;
 using Functions;
-using System.Text;
+
 namespace TrueNaiveBayes
 {
     class Program
     {
         static void Main(string[] args)
         {
-            List<int> sayi = new List<int>() { 5, 7, 25, 100 };
-            Console.WriteLine(Likelihood.two_pass_variance(sayi));
-
+          
             var stopwatch = new Stopwatch();
             stopwatch.Start();
             //------------
@@ -28,17 +23,10 @@ namespace TrueNaiveBayes
             List<Document> documents = new List<Document>();
 
             prepareDocuments(documents, classifierGrams);
-            Tuple<List<Document>, List<Document>> datas = Functions.Likelihood.splitTrainingTestData(documents);
-
+            Tuple<List<Document>, List<Document>> datas = Likelihood.splitTrainingTestData(documents);
+            Console.WriteLine(classifierGrams.Count);
+            Likelihood.training(datas.Item1, classifierGrams);
             //------------
-
-            //      foreach (string cc in classifierGrams){ Console.WriteLine(cc); }
-            //       Console.WriteLine(classifierGrams.Count);
-            /*  foreach (Document ccc in documents)
-              {
-                   Console.WriteLine(ccc.className);
-
-              }*/
 
             stopwatch.Stop();
             var elapsed_time = stopwatch.ElapsedMilliseconds;
@@ -55,22 +43,32 @@ namespace TrueNaiveBayes
             Language tr = LanguageFactory.Create(LanguageType.Turkish);
             char[] seperators = { ' ', '\n', '\t', '\r', '\0' };
             string[] stopWords = sr2.ReadToEnd().Split('\n');
-
+            Dictionary<string, int> allGrams = new Dictionary<string, int>();
 
             Parallel.ForEach(list, i =>
             {
                 StreamReader sr = new StreamReader(i, Encoding.GetEncoding("ISO-8859-9"));
-                string cleanData = Functions.PreProcessing.editFile(i, sr, sr2, tr, seperators, stopWords);
-                Dictionary<string, int> grams = Functions.CreateGramsFrequencies.make2Gram(cleanData).Concat(Functions.CreateGramsFrequencies.make3gram(cleanData)).ToDictionary(e => e.Key, e => e.Value);//2gram ile 3 grami birlestir
-                documents.Add(new Document(Path.GetFileNameWithoutExtension(i), System.IO.Directory.GetParent(i).Name, grams));
+                string cleanData = PreProcessing.editFile(i, sr, sr2, tr, seperators, stopWords);
+                Dictionary<string, int> grams = CreateGramsFrequencies.make2Gram(cleanData).Concat(CreateGramsFrequencies.make3gram(cleanData)).ToDictionary(e => e.Key, e => e.Value);//2gram ile 3 grami birlestir
+                documents.Add(new Document(Path.GetFileNameWithoutExtension(i), Directory.GetParent(i).Name, grams));
                 foreach (KeyValuePair<string, int> ix in grams)
-                    if (ix.Value >= 50)
-                    {
-                        if (!classifierGrams.Contains(ix.Key))
-                            classifierGrams.Add(ix.Key);
-                    }
+                {
+                    if (!allGrams.ContainsKey(ix.Key))
+                        allGrams.Add(ix.Key, ix.Value);
+                    else
+                        allGrams[ix.Key] += ix.Value;
+                }
                 sr.Close();
             });
+
+            foreach (KeyValuePair<string, int> gram in allGrams)
+            {
+                if (gram.Value >= 50)
+                    if (!classifierGrams.Contains(gram.Key))
+                    {
+                        classifierGrams.Add(gram.Key);
+                    }
+            }
         }
     }
 }
