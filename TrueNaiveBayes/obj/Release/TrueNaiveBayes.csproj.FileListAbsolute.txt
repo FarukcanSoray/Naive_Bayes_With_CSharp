@@ -1,8 +1,0 @@
-C:\Users\fcsor\source\repos\TrueNaiveBayes\TrueNaiveBayes\bin\Release\TrueNaiveBayes.exe.config
-C:\Users\fcsor\source\repos\TrueNaiveBayes\TrueNaiveBayes\bin\Release\TrueNaiveBayes.exe
-C:\Users\fcsor\source\repos\TrueNaiveBayes\TrueNaiveBayes\bin\Release\TrueNaiveBayes.pdb
-C:\Users\fcsor\source\repos\TrueNaiveBayes\TrueNaiveBayes\bin\Release\Nuve.dll
-C:\Users\fcsor\source\repos\TrueNaiveBayes\TrueNaiveBayes\obj\Release\TrueNaiveBayes.csproj.CoreCompileInputs.cache
-C:\Users\fcsor\source\repos\TrueNaiveBayes\TrueNaiveBayes\obj\Release\TrueNaiveBayes.csproj.CopyComplete
-C:\Users\fcsor\source\repos\TrueNaiveBayes\TrueNaiveBayes\obj\Release\TrueNaiveBayes.exe
-C:\Users\fcsor\source\repos\TrueNaiveBayes\TrueNaiveBayes\obj\Release\TrueNaiveBayes.pdb

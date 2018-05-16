@@ -1,0 +1,12 @@
+C:\Users\fcsor\source\repos\NaiveBayesGUI\NaiveBayesGUI\bin\Debug\NaiveBayesGUI.exe.config
+C:\Users\fcsor\source\repos\NaiveBayesGUI\NaiveBayesGUI\bin\Debug\NaiveBayesGUI.exe
+C:\Users\fcsor\source\repos\NaiveBayesGUI\NaiveBayesGUI\bin\Debug\NaiveBayesGUI.pdb
+C:\Users\fcsor\source\repos\NaiveBayesGUI\NaiveBayesGUI\bin\Debug\Nuve.dll
+C:\Users\fcsor\source\repos\NaiveBayesGUI\NaiveBayesGUI\obj\Debug\NaiveBayesGUI.csprojResolveAssemblyReference.cache
+C:\Users\fcsor\source\repos\NaiveBayesGUI\NaiveBayesGUI\obj\Debug\NaiveBayesGUI.Form1.resources
+C:\Users\fcsor\source\repos\NaiveBayesGUI\NaiveBayesGUI\obj\Debug\NaiveBayesGUI.Properties.Resources.resources
+C:\Users\fcsor\source\repos\NaiveBayesGUI\NaiveBayesGUI\obj\Debug\NaiveBayesGUI.csproj.GenerateResource.cache
+C:\Users\fcsor\source\repos\NaiveBayesGUI\NaiveBayesGUI\obj\Debug\NaiveBayesGUI.csproj.CoreCompileInputs.cache
+C:\Users\fcsor\source\repos\NaiveBayesGUI\NaiveBayesGUI\obj\Debug\NaiveBayesGUI.csproj.CopyComplete
+C:\Users\fcsor\source\repos\NaiveBayesGUI\NaiveBayesGUI\obj\Debug\NaiveBayesGUI.exe
+C:\Users\fcsor\source\repos\NaiveBayesGUI\NaiveBayesGUI\obj\Debug\NaiveBayesGUI.pdb
